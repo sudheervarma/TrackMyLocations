@@ -2,6 +2,7 @@ package com.samjhota.trackmylocations;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     DatabaseHelper myDataBase;
+    ProgressDialog progressDialog;
 
     Button bLogin;
     EditText etUserName, etPassword;
@@ -51,12 +53,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 String username = etUserName.getText().toString();
                 String password = etPassword.getText().toString();
 
-                if (username.isEmpty()==true){
+                if (username.isEmpty()){
                     showUserNameEmptyMessage();
                     return;
                 }
 
-                if (password.isEmpty()==true){
+                if (password.isEmpty()){
                     showPasswordEmptyMessage();
                     return;
                 }
@@ -72,7 +74,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 //                    userLocalStore.storeUserData(res);
 //                    userLocalStore.setUserLoggedIn(true);
 
-                    startActivity(new Intent(this, MainActivity.class));
+                    //startActivity(new Intent(this, MainActivity.class));
+                    startActivity(new Intent(this, Landing.class));
+
                 }
 
                 break;

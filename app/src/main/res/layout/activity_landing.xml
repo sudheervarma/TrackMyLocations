@@ -8,70 +8,37 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.samjhota.trackmylocations.Login"
-    android:weightSum="1"
-    android:background="#ff5555">
+    android:background="#ff5555"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Welcome"
+        android:id="@+id/lWelcome"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
+        android:textStyle="bold|normal"
+        android:textColor="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
-        android:id="@+id/textView2"
+        android:id="@+id/lSpace1"
         android:layout_gravity="center_horizontal"
-        android:textSize="30dp"
+        android:textSize="50dp"
         android:textStyle="bold|normal"
-        android:layout_weight="0.19" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="TrackMyLocations"
-        android:id="@+id/textView3"
-        android:layout_weight="0.22"
-        android:textSize="30dp"
-        android:textStyle="bold|italic"
-        android:textColor="#ffffff"
-        android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="User Name"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
         android:textColor="#ffffff" />
-
-    <EditText
-        android:id="@+id/etUserName"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        android:phoneNumber="false"
-        android:maxLength="25"
-        android:autoText="true" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Password"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="#ffffff" />
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:inputType="textPassword"
-        android:layout_height="wrap_content"
-        android:maxLength="10"/>
 
     <Button
-        android:id="@+id/bLogin"
-        android:text="LogIn"
+        android:id="@+id/bViewMaps"
+        android:text="View Maps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:background="#bf0c0c"
         android:textColor="#ffffff" />
 
@@ -80,20 +47,39 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
-        android:id="@+id/textView4"
+        android:id="@+id/lSpace2"
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"
-        android:textStyle="bold|normal" />
+        android:textStyle="bold|normal"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/bViewMyProfile"
+        android:text="View My Profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:background="#bf0c0c"
+        android:textColor="#ffffff" />
 
     <TextView
-        android:id="@+id/tvRegisterLink"
         android:layout_width="wrap_content"
-        android:text="New Member? Register Here"
-        android:textStyle="italic"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="#ffffff"
-        android:layout_gravity="center_horizontal" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/lSpace3"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:textStyle="bold|normal"
+        android:textColor="#ffffff" />
 
+    <Button
+        android:id="@+id/bLogOut"
+        android:text="Logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:background="#bf0c0c"
+        android:textColor="#ffffff" />
 
 </LinearLayout>
