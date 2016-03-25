@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.samjhota.trackmylocations.Login"
+    android:weightSum="1"
+    android:background="#ff5555">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:textStyle="bold|normal"
+        android:layout_weight="0.19" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="TrackMyLocations"
+        android:id="@+id/textView3"
+        android:layout_weight="0.22"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="User Name"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="#ffffff" />
+
+    <EditText
+        android:id="@+id/etUserName"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:phoneNumber="false"
+        android:autoText="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Password"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="#ffffff" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:inputType="textPassword"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/bLogin"
+        android:text="LogIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:background="#bf0c0c"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:textStyle="bold|normal" />
+
+    <TextView
+        android:id="@+id/tvRegisterLink"
+        android:layout_width="wrap_content"
+        android:text="New Member? Register Here"
+        android:textStyle="italic"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>
