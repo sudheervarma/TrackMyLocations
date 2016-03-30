@@ -41,7 +41,10 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()){
             case R.id.bViewMaps:
 
-                showErrorMessage("Page is under construction !!!");
+                //showErrorMessage("Page is under construction !!!");
+
+                startActivity(new Intent(this, MapsActivity.class));
+
                 break;
 
             case R.id.bViewMyProfile:

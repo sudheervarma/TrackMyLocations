@@ -91,14 +91,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private void showUserNameEmptyMessage(){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Login.this);
-        dialogBuilder.setMessage("Username cannot be empty !!!");
+        dialogBuilder.setMessage("Please enter Username !!!");
         dialogBuilder.setPositiveButton("OK", null);
         dialogBuilder.show();
     }
 
     private void showPasswordEmptyMessage(){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Login.this);
-        dialogBuilder.setMessage("Password cannot be empty !!!");
+        dialogBuilder.setMessage("Please enter Password !!!");
         dialogBuilder.setPositiveButton("OK", null);
         dialogBuilder.show();
     }
