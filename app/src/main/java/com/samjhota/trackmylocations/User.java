@@ -1,7 +1,7 @@
 package com.samjhota.trackmylocations;
 
 /**
- * Created by srudraraju3 on 3/15/16.
+ * Created by Samjhota on 3/15/16.
  */
 public class User {
     String firstname, lastname, email, city, state, zipcode, username, password;

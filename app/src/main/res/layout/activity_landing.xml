@@ -67,6 +67,27 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
+        android:id="@+id/lSpace4"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:textStyle="bold|normal"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/bStepCounter"
+        android:text="Step Counter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:background="#bf0c0c"
+        android:textColor="#ffffff" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
         android:id="@+id/lSpace3"
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"

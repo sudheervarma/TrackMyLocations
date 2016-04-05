@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by srudraraju3 on 3/15/16.
+ * Created by Samjhota on 3/15/16.
  */
 public class UserLocalStore {
 

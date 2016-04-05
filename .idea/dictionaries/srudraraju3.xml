@@ -3,6 +3,8 @@
     <words>
       <w>firstname</w>
       <w>lastname</w>
+      <w>stepcounter</w>
+      <w>stepdetector</w>
       <w>zipcode</w>
     </words>
   </dictionary>

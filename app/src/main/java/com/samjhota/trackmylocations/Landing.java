@@ -1,6 +1,7 @@
 package com.samjhota.trackmylocations;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
 
     Button bViewMaps;
     Button bViewMyProfile;
+    Button bStepCounter;
     Button bLogOut;
 
 
@@ -27,10 +29,12 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
 
         bViewMaps = (Button) findViewById(R.id.bViewMaps);
         bViewMyProfile = (Button) findViewById(R.id.bViewMyProfile);
+        bStepCounter = (Button) findViewById(R.id.bStepCounter);
         bLogOut = (Button) findViewById(R.id.bLogOut);
 
         bViewMaps.setOnClickListener(this);
         bViewMyProfile.setOnClickListener(this);
+        bStepCounter.setOnClickListener(this);
         bLogOut.setOnClickListener(this);
 
     }
@@ -72,11 +76,14 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
                 showMessage("Data:", buffer.toString());
                 break;
 
+            case R.id.bStepCounter:
+
+                startActivity(new Intent(this, StepCounter.class));
+                break;
+
             case R.id.bLogOut:
 
                 showLogOffMessage();
-
-                startActivity(new Intent(this, Login.class));
                 break;
         }
     }
@@ -98,7 +105,19 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
 
     private void showLogOffMessage() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        dialogBuilder.setMessage("Are you sure you want to Log Off ???").setPositiveButton("YES",null).setNegativeButton("NO", null);
+        dialogBuilder.setMessage("Are you sure you want to Log Off ???")
+                .setCancelable(false)
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         dialogBuilder.show();
     }
 }
