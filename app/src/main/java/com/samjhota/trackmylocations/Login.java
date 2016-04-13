@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -63,16 +66,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     return;
                 }
 
-                //User user = new User(username, password);
+                User user = new User(username, password);
                 Cursor res = myDataBase.fetchData(username);
 
-                //String returnedUser = res.getString(7);
                 if (res.getCount() ==0) {
                     // Show Error Message
                     showErrorMessage();
                 } else {
-//                    userLocalStore.storeUserData(res);
-//                    userLocalStore.setUserLoggedIn(true);
+
+
+                    userLocalStore.storeUserData(res);
+                    userLocalStore.setUserLoggedIn(true);
 
                     //startActivity(new Intent(this, MainActivity.class));
                     startActivity(new Intent(this, Landing.class));

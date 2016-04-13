@@ -61,9 +61,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
-    public Cursor getAllData() {
+    public Cursor getAllData(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("Select * from " + TABLE_NAME, null);
+        Cursor res = db.rawQuery("Select * from " + TABLE_NAME + " WHERE USER_NAME = '" + username + "'", null);
         return res;
 
     }
@@ -80,10 +80,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         contentValues.put(COL_7, username);
         contentValues.put(COL_8, password);
 
-        //db.update(TABLE_NAME, contentValues, "USER_NAME = ?", new String[]{username} );
-
-        db.rawQuery("UPDATE " + TABLE_NAME + " SET EMAIL = '" + email + "' WHERE USER_NAME = " + username, null);
-
+        db.update(TABLE_NAME, contentValues, "USER_NAME = " + username,null);
+        //db.rawQuery("UPDATE " + TABLE_NAME + " SET EMAIL = '" + email + "' WHERE USER_NAME = '" + username + "'", null);
+        //db.rawQuery("Commit()",null);
         return true;
     }
 

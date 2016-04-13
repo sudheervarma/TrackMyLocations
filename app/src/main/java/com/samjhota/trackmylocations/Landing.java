@@ -19,6 +19,7 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
     Button bStepCounter;
     Button bLogOut;
 
+    UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
         bStepCounter.setOnClickListener(this);
         bLogOut.setOnClickListener(this);
 
+        userLocalStore = new UserLocalStore(this);
+
     }
 
     @Override
@@ -52,28 +55,33 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.bViewMyProfile:
-                Cursor res = myDataBase.getAllData();
-                if (res.getCount() ==0) {
-                    // Show Message
-                    showMessage("Error:", "No Data Found!!!");
-                    return;
-                }
+//                User user = userLocalStore.getLoggedInUser();
+//
+//                Cursor res = myDataBase.getAllData(user.username);
+//                if (res.getCount() ==0) {
+//                    // Show Message
+//                    showMessage("Error:", "No Data Found!!!");
+//                    return;
+//                }
+//
+//                StringBuffer buffer = new StringBuffer();
+//                while (res.moveToNext()) {
+//                    buffer.append("UserID : "+ res.getString(0)+"\n");
+//                    buffer.append("FirstName : "+ res.getString(1)+"\n");
+//                    buffer.append("LastName : "+ res.getString(2)+"\n");
+//                    buffer.append("Email : "+ res.getString(3)+"\n");
+//                    buffer.append("City : "+ res.getString(4)+"\n");
+//                    buffer.append("State : "+ res.getString(5)+"\n");
+//                    buffer.append("Zip Code : "+ res.getString(6)+"\n");
+//                    buffer.append("UserName : "+ res.getString(7)+"\n");
+//                    buffer.append("Password : "+ res.getString(8)+"\n\n");
+//                }
+//
+//                // Show all data
+//                showMessage("Data:", buffer.toString());
+//
+                startActivity(new Intent(this, MainActivity.class));
 
-                StringBuffer buffer = new StringBuffer();
-                while (res.moveToNext()) {
-                    buffer.append("UserID : "+ res.getString(0)+"\n");
-                    buffer.append("FirstName : "+ res.getString(1)+"\n");
-                    buffer.append("LastName : "+ res.getString(2)+"\n");
-                    buffer.append("Email : "+ res.getString(3)+"\n");
-                    buffer.append("City : "+ res.getString(4)+"\n");
-                    buffer.append("State : "+ res.getString(5)+"\n");
-                    buffer.append("Zip Code : "+ res.getString(6)+"\n");
-                    buffer.append("UserName : "+ res.getString(7)+"\n");
-                    buffer.append("Password : "+ res.getString(8)+"\n\n");
-                }
-
-                // Show all data
-                showMessage("Data:", buffer.toString());
                 break;
 
             case R.id.bStepCounter:
@@ -111,6 +119,8 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
+                userLocalStore.clearUserData();
+                userLocalStore.setUserLoggedIn(false);
             }
         }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
