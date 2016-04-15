@@ -15,6 +15,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:textSize="10dp"
+        android:textStyle="bold|normal"
+        android:layout_weight="0.10" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Welcome"
         android:id="@+id/lWelcome"
         android:layout_gravity="center_horizontal"
@@ -34,8 +45,8 @@
         android:textColor="#ffffff" />
 
     <Button
-        android:id="@+id/bViewMaps"
-        android:text="View Maps"
+        android:id="@+id/bViewMyLocation"
+        android:text="View My Location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
@@ -48,26 +59,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
         android:id="@+id/lSpace2"
-        android:layout_gravity="center_horizontal"
-        android:textSize="30dp"
-        android:textStyle="bold|normal"
-        android:textColor="#ffffff" />
-
-    <Button
-        android:id="@+id/bViewMyProfile"
-        android:text="View My Profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:background="#bf0c0c"
-        android:textColor="#ffffff" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/lSpace4"
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"
         android:textStyle="bold|normal"
@@ -89,6 +80,26 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
         android:id="@+id/lSpace3"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:textStyle="bold|normal"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/bViewMyProfile"
+        android:text="View My Profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:background="#bf0c0c"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/lSpace4"
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"
         android:textStyle="bold|normal"

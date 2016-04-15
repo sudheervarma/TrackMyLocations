@@ -14,7 +14,7 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
 
     DatabaseHelper myDataBase;
 
-    Button bViewMaps;
+    Button bViewMyLocation;
     Button bViewMyProfile;
     Button bStepCounter;
     Button bLogOut;
@@ -28,12 +28,12 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
 
         myDataBase = new DatabaseHelper(this);
 
-        bViewMaps = (Button) findViewById(R.id.bViewMaps);
+        bViewMyLocation = (Button) findViewById(R.id.bViewMyLocation);
         bViewMyProfile = (Button) findViewById(R.id.bViewMyProfile);
         bStepCounter = (Button) findViewById(R.id.bStepCounter);
         bLogOut = (Button) findViewById(R.id.bLogOut);
 
-        bViewMaps.setOnClickListener(this);
+        bViewMyLocation.setOnClickListener(this);
         bViewMyProfile.setOnClickListener(this);
         bStepCounter.setOnClickListener(this);
         bLogOut.setOnClickListener(this);
@@ -46,12 +46,14 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.bViewMaps:
-
-                //showErrorMessage("Page is under construction !!!");
+            case R.id.bViewMyLocation:
 
                 startActivity(new Intent(this, MapsActivity.class));
+                break;
 
+            case R.id.bStepCounter:
+
+                startActivity(new Intent(this, StepCounter.class));
                 break;
 
             case R.id.bViewMyProfile:
@@ -81,12 +83,6 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
 //                showMessage("Data:", buffer.toString());
 //
                 startActivity(new Intent(this, MainActivity.class));
-
-                break;
-
-            case R.id.bStepCounter:
-
-                startActivity(new Intent(this, StepCounter.class));
                 break;
 
             case R.id.bLogOut:
@@ -94,21 +90,6 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
                 showLogOffMessage();
                 break;
         }
-    }
-
-    public void showMessage(String title, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
-    }
-
-    private void showErrorMessage(String message) {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        dialogBuilder.setMessage(message);
-        dialogBuilder.setPositiveButton("OK", null);
-        dialogBuilder.show();
     }
 
     private void showLogOffMessage() {
@@ -121,6 +102,7 @@ public class Landing extends AppCompatActivity implements View.OnClickListener {
                 finish();
                 userLocalStore.clearUserData();
                 userLocalStore.setUserLoggedIn(false);
+                startActivity(new Intent(Landing.this, Login.class));
             }
         }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override

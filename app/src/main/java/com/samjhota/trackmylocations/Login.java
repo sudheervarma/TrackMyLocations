@@ -3,6 +3,7 @@ package com.samjhota.trackmylocations;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -67,20 +68,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 }
 
                 User user = new User(username, password);
-                Cursor res = myDataBase.fetchData(username);
+                Cursor res = myDataBase.fetchUserData(username, password);
 
                 if (res.getCount() ==0) {
                     // Show Error Message
                     showErrorMessage();
                 } else {
 
-
                     userLocalStore.storeUserData(res);
                     userLocalStore.setUserLoggedIn(true);
 
-                    //startActivity(new Intent(this, MainActivity.class));
                     startActivity(new Intent(this, Landing.class));
-
                 }
 
                 break;
@@ -109,10 +107,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private void showErrorMessage(){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(Login.this);
-        dialogBuilder.setMessage("Incorrect User Details !!!");
+        dialogBuilder.setMessage("Incorrect Username or Password !!!");
         dialogBuilder.setPositiveButton("OK", null);
         dialogBuilder.show();
     }
+
 //
 //    private void logUserIn(User retunedUser){
 //        userLocalStore.storeUserData(retunedUser);
@@ -121,4 +120,5 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 //        startActivity(new Intent(this, MainActivity.class));
 //
 //    }
+
 }

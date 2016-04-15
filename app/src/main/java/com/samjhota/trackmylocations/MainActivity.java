@@ -1,6 +1,7 @@
 package com.samjhota.trackmylocations;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -85,14 +86,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
 
             case R.id.bUpdateProfile:
-                String firstname = etFirstName.getText().toString();
-                String lastname = etLastName.getText().toString();
-                String email = etEmail.getText().toString();
-                String city = etCity.getText().toString();
-                String state = etState.getText().toString();
-                String zipcode = etZipCode.getText().toString();
-                String username = etUserName.getText().toString();
-                String password = etPassword.getText().toString();
+                final String firstname = etFirstName.getText().toString();
+                final String lastname = etLastName.getText().toString();
+                final String email = etEmail.getText().toString();
+                final String city = etCity.getText().toString();
+                final String state = etState.getText().toString();
+                final String zipcode = etZipCode.getText().toString();
+                final String username = etUserName.getText().toString();
+                final String password = etPassword.getText().toString();
 
                 if (firstname.isEmpty()){
                     showErrorMessage("'First Name' cannot be empty !!!");
@@ -149,27 +150,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
 
-                boolean isUpdate = myDataBase.updateData(firstname, lastname, email, city, state, zipcode, username, password);
-                if (isUpdate == true) {
-                    Toast.makeText(MainActivity.this, "Data Updated Successfully", Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(MainActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
-                }
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+                dialogBuilder.setMessage("Are you sure you want to save the changes ???")
+                        .setCancelable(false)
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                boolean isUpdate = myDataBase.updateData(firstname, lastname, email, city, state, zipcode, username, password);
+                                if (isUpdate == true) {
+                                    Toast.makeText(MainActivity.this, "Data Updated Successfully", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(MainActivity.this, Landing.class));
+                                }else{
+                                    Toast.makeText(MainActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                dialogBuilder.show();
 
                 break;
 
             case R.id.bUnRegister:
-                userLocalStore.clearUserData();
-                userLocalStore.setUserLoggedIn(false);
 
-                Integer deleteRows = myDataBase.deleteData(etUserName.getText().toString());
-                if (deleteRows > 0){
-                    Toast.makeText(MainActivity.this, "Member Data Unregistered Successfully", Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(MainActivity.this, "Member Data not Unregistered", Toast.LENGTH_LONG).show();
-                }
-                startActivity(new Intent(this, Login.class));
+                dialogBuilder = new AlertDialog.Builder(this);
+                dialogBuilder.setMessage("Are you sure you want to Unregister ???")
+                        .setCancelable(false)
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                Integer deleteRows = myDataBase.deleteData(etUserName.getText().toString());
+                                if (deleteRows > 0){
+                                    Toast.makeText(MainActivity.this, "Successfully Unregistered", Toast.LENGTH_LONG).show();
+                                    userLocalStore.clearUserData();
+                                    userLocalStore.setUserLoggedIn(false);
+                                    startActivity(new Intent(MainActivity.this, Login.class));
+                                }else {
+                                    Toast.makeText(MainActivity.this, "Unregistration is not successful", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                dialogBuilder.show();
+
                 break;
+
             case R.id.bLogOut:
                 userLocalStore.clearUserData();
                 userLocalStore.setUserLoggedIn(false);

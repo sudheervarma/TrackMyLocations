@@ -80,9 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         contentValues.put(COL_7, username);
         contentValues.put(COL_8, password);
 
-        db.update(TABLE_NAME, contentValues, "USER_NAME = " + username,null);
-        //db.rawQuery("UPDATE " + TABLE_NAME + " SET EMAIL = '" + email + "' WHERE USER_NAME = '" + username + "'", null);
-        //db.rawQuery("Commit()",null);
+        db.execSQL("UPDATE " + TABLE_NAME + " SET FIRST_NAME = '" + firstname + "', LAST_NAME = '" + lastname + "', EMAIL = '" + email + "', CITY = '" + city + "', STATE = '" + state + "', ZIPCODE = '" + zipcode + "', PASSWORD = '" + password + "' WHERE USER_NAME = '" + username + "'");
         return true;
     }
 
@@ -97,4 +95,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return res;
     }
 
+    public Cursor fetchUserData(String username, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("Select * from " + TABLE_NAME + " WHERE USER_NAME = '" + username + "' AND PASSWORD = '" + password + "'", null);
+        return res;
+    }
 }

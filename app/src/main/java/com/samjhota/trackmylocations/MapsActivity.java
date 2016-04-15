@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -29,11 +31,13 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private UiSettings uiSettings;
-
+    UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +48,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        userLocalStore = new UserLocalStore(this);
     }
-
 
     /**
      * Manipulates the map once available.
@@ -77,32 +81,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Show rationale and request permission.
         }
 
-//        // Adding a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//        mMap.animateCamera(CameraUpdateFactory.zoomTo(10.0f));
-//        mMap.addMarker(new MarkerOptions()
-//                .title("Sydney")
-//                .snippet("Congaroo State")
-//                .position(sydney));
-//
-//        // Adding a marker in California and move the camera
-//        LatLng california = new LatLng(37.725977, -121.933576);
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(california));
-//        mMap.animateCamera(CameraUpdateFactory.zoomTo(10.0f));
-//        mMap.addMarker(new MarkerOptions()
-//                .title("California")
-//                .snippet("Golden State")
-//                .position(california));
-//
-        // Adding a marker in Florida and move the camera
-        LatLng florida = new LatLng(28.054647, -80.624894);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(florida));
+        User user = userLocalStore.getLoggedInUser();
+        String address = user.city + " " + user.state + " " + user.zipcode + " USA";
+        //String address = "110 CEDAR POINTE LOOP SAN RAMON CA 94583 USA";
+        //String address = "111 CYPRESS BROOK CIR MELBOURNE FL 32901 USA";
+        //String address = "PLEASANTON CA 94588 USA";
+
+        LatLng locationFromAddress = getLocationFromAddress(this, address);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(locationFromAddress));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10.0f));
         mMap.addMarker(new MarkerOptions()
-                .title("Florida")
-                .snippet("Sunshine State")
-                .position(florida));
+                .title("Your Location")
+                .snippet(address)
+                .position(locationFromAddress));
 
 ///////----------------------------------Zooming camera to position user-----------------
 //
@@ -126,5 +117,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //
 ///////----------------------------------Zooming camera to position user-----------------
 
+    }
+
+    public LatLng getLocationFromAddress(Context context,String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+        try {
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            location.getLatitude();
+            location.getLongitude();
+
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return p1;
     }
 }
