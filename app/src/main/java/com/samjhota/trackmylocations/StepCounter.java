@@ -51,7 +51,7 @@ public class StepCounter extends AppCompatActivity implements SensorEventListene
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (activityRunning) {
-            StepCount.setText(String.valueOf(event.values[0]));
+            StepCount.setText(String.valueOf(new Integer((int) event.values[0])));
         }
 
     }
