@@ -22,7 +22,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     DatabaseHelper myDataBase;
 
-    EditText etFirstName, etLastName, etEmail, etCity, etState, etZipCode, etUserName, etPassword;
+    EditText etFirstName, etLastName, etEmail, etAddress, etCity, etState, etZipCode, etUserName, etPassword;
     TextView tvLoginLink;
     Button bRegister;
 
@@ -37,6 +37,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etLastName = (EditText) findViewById(R.id.etLastName);
         etEmail = (EditText) findViewById(R.id.etEmail);
+        etAddress = (EditText) findViewById(R.id.etAddress);
         etCity = (EditText) findViewById((R.id.etCity));
         etState = (EditText) findViewById(R.id.etState);
         etZipCode = (EditText) findViewById(R.id.etZipCode);
@@ -59,6 +60,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 String firstname = etFirstName.getText().toString().trim();
                 String lastname = etLastName.getText().toString().trim();
                 String email = etEmail.getText().toString().trim();
+                String address = etAddress.getText().toString().trim();
                 String city = etCity.getText().toString().trim();
                 String state = etState.getText().toString().trim();
                 String zipcode = etZipCode.getText().toString().trim();
@@ -82,6 +84,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                 if(isValidEmailId(email) == false) {
                     showErrorMessage("Invalid Email address !!!");
+                    return;
+                }
+
+                if (address.isEmpty()){
+                    showErrorMessage("'Address' cannot be empty !!!");
                     return;
                 }
 
@@ -120,12 +127,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     return;
                 }
 
-                User registeredData = new User(firstname, lastname, email, city, state, zipcode, username, password);
+                User registeredData = new User(firstname, lastname, email, address, city, state, zipcode, username, password);
 
                 // Checking if user is already registered
                 Cursor res1 = myDataBase.fetchData(username);
                 if (res1.getCount() ==0) {
-                    boolean isInserted = myDataBase.insertData(firstname, lastname, email, city, state, zipcode, username, password);
+                    boolean isInserted = myDataBase.insertData(firstname, lastname, email, address, city, state, zipcode, username, password);
                     if (isInserted == true) {
                         Toast.makeText(Register.this, "Registration is successful !!!", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(this, Login.class));

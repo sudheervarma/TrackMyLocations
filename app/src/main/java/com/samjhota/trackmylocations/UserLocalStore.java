@@ -22,11 +22,12 @@ public class UserLocalStore {
             spEditor.putString("firstname", user.getString(1));
             spEditor.putString("lastname", user.getString(2));
             spEditor.putString("email", user.getString(3));
-            spEditor.putString("city", user.getString(4));
-            spEditor.putString("state", user.getString(5));
-            spEditor.putString("zipcode", user.getString(6));
-            spEditor.putString("username", user.getString(7));
-            spEditor.putString("password", user.getString(8));
+            spEditor.putString("address", user.getString(4));
+            spEditor.putString("city", user.getString(5));
+            spEditor.putString("state", user.getString(6));
+            spEditor.putString("zipcode", user.getString(7));
+            spEditor.putString("username", user.getString(8));
+            spEditor.putString("password", user.getString(9));
         }
         spEditor.commit();
     }
@@ -48,13 +49,14 @@ public class UserLocalStore {
         String firstname = userLocalDatabase.getString("firstname", "");
         String lastname = userLocalDatabase.getString("lastname", "");
         String email = userLocalDatabase.getString("email", "");
+        String address = userLocalDatabase.getString("address", "");
         String city = userLocalDatabase.getString("city", "");
         String state = userLocalDatabase.getString("state", "");
         String zipcode = userLocalDatabase.getString("zipcode", "");
         String username = userLocalDatabase.getString("username", "");
         String password = userLocalDatabase.getString("password", "");
 
-        User storedUser = new User(firstname, lastname, email, city, state, zipcode, username, password);
+        User storedUser = new User(firstname, lastname, email, address, city, state, zipcode, username, password);
 
         return storedUser;
 

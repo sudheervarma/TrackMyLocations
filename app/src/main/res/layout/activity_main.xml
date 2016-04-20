@@ -1,192 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:padding="10dp"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.samjhota.trackmylocations.Login"
-    android:background="#ff5555">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="My Profile"
-        android:id="@+id/textView2"
-        android:layout_gravity="center_horizontal"
-        android:textSize="20dp"
-        android:textStyle="bold|normal"
-        android:textColor="#ffffff" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="First Name"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textColor="#ffffff" />
-
-    <EditText
-        android:id="@+id/etFirstName"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        android:maxLength="25" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Last Name"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textColor="#ffffff" />
-
-    <EditText
-        android:id="@+id/etLastName"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        android:maxLength="25" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="E-Mail"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:id="@+id/textView"
-        android:textColor="#ffffff" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/etEmail"
-        android:maxLength="50" />
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:padding="10dp"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="com.samjhota.trackmylocations.Login"
+        android:background="#ff5555">
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="City"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="My Profile"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20dp"
+            android:textStyle="bold|normal"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="First Name"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:layout_row="0"
-            android:layout_column="0"
             android:textColor="#ffffff" />
 
         <EditText
-            android:id="@+id/etCity"
-            android:layout_width="209dp"
+            android:id="@+id/etFirstName"
+            android:layout_width="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:maxLength="20"/>
+            android:maxLength="25" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="State"
+            android:text="Last Name"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:layout_row="0"
-            android:layout_column="1"
             android:textColor="#ffffff" />
 
         <EditText
-            android:layout_width="66dp"
+            android:id="@+id/etLastName"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
+            android:maxLength="25" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="E-Mail"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:id="@+id/textView"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
             android:ems="10"
-            android:maxLength="2"
-            android:id="@+id/etState"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:capitalize="characters" />
+            android:id="@+id/etEmail"
+            android:maxLength="50" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="Zip Code"
+            android:text="Address"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:layout_row="0"
-            android:layout_column="2"
             android:textColor="#ffffff" />
 
         <EditText
-            android:id="@+id/etZipCode"
-            android:layout_width="85dp"
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:maxLength="5"
-            android:numeric="integer" />
-    </GridLayout>
+            android:maxLength="100"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="User Name"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textColor="#ffffff" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etUserName"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        android:maxLength="25"
-        android:enabled="false"
-        android:editable="false"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="City"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:textColor="#ffffff" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Password"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:textColor="#ffffff" />
+            <EditText
+                android:id="@+id/etCity"
+                android:layout_width="209dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:maxLength="20"/>
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:inputType="textPassword"
-        android:layout_height="wrap_content"
-        android:maxLength="10"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="State"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:textColor="#ffffff" />
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="66dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="2"
+                android:id="@+id/etState"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:capitalize="characters" />
 
-        <Button
-            android:id="@+id/bUpdateProfile"
-            android:text="Update Profile"
-            android:layout_width="150dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Zip Code"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:textColor="#ffffff" />
+
+            <EditText
+                android:id="@+id/etZipCode"
+                android:layout_width="85dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:maxLength="5"
+                android:numeric="integer" />
+        </GridLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="User Name"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:background="#bf0c0c"
+            android:textSize="15dp"
             android:textColor="#ffffff" />
 
-        <Button
-            android:id="@+id/bUnRegister"
-            android:text="UnRegister"
-            android:layout_width="150dp"
+        <EditText
+            android:id="@+id/etUserName"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_gravity="right"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:background="#bf0c0c"
-            android:textColor="#ffffff" />
-    </GridLayout>
+            android:maxLength="25"
+            android:enabled="false"
+            android:editable="false"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Password"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content"
+            android:maxLength="10"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/bUpdateProfile"
+                android:text="Update Profile"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:background="#bf0c0c"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/bUnRegister"
+                android:text="UnRegister"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_gravity="right"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:background="#bf0c0c"
+                android:textColor="#ffffff" />
+        </GridLayout>
+
+    </LinearLayout>
+</ScrollView>

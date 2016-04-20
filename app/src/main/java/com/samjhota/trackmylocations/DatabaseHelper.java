@@ -17,11 +17,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String COL_2 = "FIRST_NAME";
     public static final String COL_3 = "LAST_NAME";
     public static final String COL_4 = "EMAIL";
-    public static final String COL_5 = "CITY";
-    public static final String COL_6 = "STATE";
-    public static final String COL_7 = "ZIPCODE";
-    public static final String COL_8 = "USER_NAME";
-    public static final String COL_9 = "PASSWORD";
+    public static final String COL_5 = "ADDRESS";
+    public static final String COL_6 = "CITY";
+    public static final String COL_7 = "STATE";
+    public static final String COL_8 = "ZIPCODE";
+    public static final String COL_9 = "USER_NAME";
+    public static final String COL_10 = "PASSWORD";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -31,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (USER_ID INTEGER PRIMARY KEY AUTOINCREMENT,FIRST_NAME TEXT,LAST_NAME TEXT,EMAIL TEXT,CITY TEXT, STATE TEXT, ZIPCODE TEXT, USER_NAME TEXT UNIQUE,PASSWORD TEXT)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " (USER_ID INTEGER PRIMARY KEY AUTOINCREMENT,FIRST_NAME TEXT,LAST_NAME TEXT,EMAIL TEXT,ADDRESS TEXT, CITY TEXT, STATE TEXT, ZIPCODE TEXT, USER_NAME TEXT UNIQUE,PASSWORD TEXT)");
 
     }
 
@@ -41,17 +42,18 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public boolean insertData(String firstname, String lastname, String email, String city, String state, String zipcode, String username, String password){
+    public boolean insertData(String firstname, String lastname, String email, String address, String city, String state, String zipcode, String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, firstname);
         contentValues.put(COL_3, lastname);
         contentValues.put(COL_4, email);
-        contentValues.put(COL_5, city);
-        contentValues.put(COL_6, state);
-        contentValues.put(COL_7, zipcode);
-        contentValues.put(COL_8, username);
-        contentValues.put(COL_9, password);
+        contentValues.put(COL_5, address);
+        contentValues.put(COL_6, city);
+        contentValues.put(COL_7, state);
+        contentValues.put(COL_8, zipcode);
+        contentValues.put(COL_9, username);
+        contentValues.put(COL_10, password);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1){
@@ -68,19 +70,20 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
-    public boolean updateData(String firstname, String lastname, String email, String city, String state, String zipcode, String username, String password){
+    public boolean updateData(String firstname, String lastname, String email, String address, String city, String state, String zipcode, String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, firstname);
         contentValues.put(COL_2, lastname);
         contentValues.put(COL_3, email);
-        contentValues.put(COL_4, city);
-        contentValues.put(COL_5, state);
-        contentValues.put(COL_6, zipcode);
-        contentValues.put(COL_7, username);
-        contentValues.put(COL_8, password);
+        contentValues.put(COL_4, address);
+        contentValues.put(COL_5, city);
+        contentValues.put(COL_6, state);
+        contentValues.put(COL_7, zipcode);
+        contentValues.put(COL_8, username);
+        contentValues.put(COL_9, password);
 
-        db.execSQL("UPDATE " + TABLE_NAME + " SET FIRST_NAME = '" + firstname + "', LAST_NAME = '" + lastname + "', EMAIL = '" + email + "', CITY = '" + city + "', STATE = '" + state + "', ZIPCODE = '" + zipcode + "', PASSWORD = '" + password + "' WHERE USER_NAME = '" + username + "'");
+        db.execSQL("UPDATE " + TABLE_NAME + " SET FIRST_NAME = '" + firstname + "', LAST_NAME = '" + lastname + "', EMAIL = '" + email + "', ADDRESS = '" + address + "', CITY = '" + city + "', STATE = '" + state + "', ZIPCODE = '" + zipcode + "', PASSWORD = '" + password + "' WHERE USER_NAME = '" + username + "'");
         return true;
     }
 

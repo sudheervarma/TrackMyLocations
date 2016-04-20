@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button bUpdateProfile;
     Button bUnRegister;
-    EditText etFirstName, etLastName, etEmail, etCity, etState, etZipCode, etUserName, etPassword;
+    EditText etFirstName, etLastName, etEmail, etAddress, etCity, etState, etZipCode, etUserName, etPassword;
     UserLocalStore userLocalStore;
 
     @Override
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etLastName = (EditText) findViewById(R.id.etLastName);
         etEmail = (EditText) findViewById(R.id.etEmail);
+        etAddress = (EditText) findViewById(R.id.etAddress);
         etCity = (EditText) findViewById((R.id.etCity));
         etState = (EditText) findViewById(R.id.etState);
         etZipCode = (EditText) findViewById(R.id.etZipCode);
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etFirstName.setText(user.firstname);
         etLastName.setText(user.lastname);
         etEmail.setText(user.email);
+        etAddress.setText(user.address);
         etCity.setText(user.city);
         etState.setText(user.state);
         etZipCode.setText(user.zipcode);
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 final String firstname = etFirstName.getText().toString();
                 final String lastname = etLastName.getText().toString();
                 final String email = etEmail.getText().toString();
+                final String address = etAddress.getText().toString();
                 final String city = etCity.getText().toString();
                 final String state = etState.getText().toString();
                 final String zipcode = etZipCode.getText().toString();
@@ -112,6 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if(isValidEmailId(email) == false) {
                     showErrorMessage("Invalid Email address !!!");
+                    return;
+                }
+
+                if (address.isEmpty()){
+                    showErrorMessage("'Address' cannot be empty !!!");
                     return;
                 }
 
@@ -157,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                boolean isUpdate = myDataBase.updateData(firstname, lastname, email, city, state, zipcode, username, password);
+                                boolean isUpdate = myDataBase.updateData(firstname, lastname, email, address, city, state, zipcode, username, password);
                                 if (isUpdate == true) {
                                     Toast.makeText(MainActivity.this, "Data Updated Successfully", Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(MainActivity.this, Landing.class));
