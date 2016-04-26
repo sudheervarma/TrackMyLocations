@@ -22,7 +22,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     DatabaseHelper myDataBase;
 
-    EditText etFirstName, etLastName, etEmail, etAddress, etCity, etState, etZipCode, etUserName, etPassword;
+    EditText etFirstName, etLastName, etEmail, etAddress, etCity, etState, etZipCode, etUserName, etPassword, etConfirmPassword;
     TextView tvLoginLink;
     Button bRegister;
 
@@ -43,6 +43,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         etZipCode = (EditText) findViewById(R.id.etZipCode);
         etUserName = (EditText) findViewById(R.id.etUserName);
         etPassword = (EditText) findViewById(R.id.etPassword);
+        etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
 
         bRegister = (Button) findViewById(R.id.bRegister);
         tvLoginLink = (TextView) findViewById(R.id.tvLoginLink);
@@ -66,6 +67,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 String zipcode = etZipCode.getText().toString().trim();
                 String username = etUserName.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
+                String confirmpassword = etConfirmPassword.getText().toString().trim();
 
                 if (firstname.isEmpty()){
                     showErrorMessage("'First Name' cannot be empty !!!");
@@ -124,6 +126,16 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                 if (password.isEmpty()){
                     showErrorMessage("'Password' cannot be empty !!!");
+                    return;
+                }
+
+                if (confirmpassword.isEmpty()){
+                    showErrorMessage("'Confirm Password' cannot be empty !!!");
+                    return;
+                }
+
+                if (!(password).equals(confirmpassword)){
+                    showErrorMessage("Password mismatch!!!");
                     return;
                 }
 

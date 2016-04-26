@@ -47,8 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        userLocalStore = new UserLocalStore(this);
     }
 
     /**
@@ -63,6 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        userLocalStore = new UserLocalStore(this);
 
         uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
@@ -73,13 +72,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         uiSettings.setTiltGesturesEnabled(true);
         uiSettings.setRotateGesturesEnabled(true);
         uiSettings.setIndoorLevelPickerEnabled(true);
+        uiSettings.setMyLocationButtonEnabled(true);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(true);
         } else {
             // Show rationale and request permission.
+            //mMap.setMyLocationEnabled(true);
         }
+
 
         User user = userLocalStore.getLoggedInUser();
         String address = user.address + " " + user.city + " " + user.state + " " + user.zipcode + " USA";

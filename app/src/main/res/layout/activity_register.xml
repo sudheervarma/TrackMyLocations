@@ -24,7 +24,8 @@
             android:layout_gravity="center_horizontal"
             android:textSize="20dp"
             android:textStyle="bold|normal"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:focusable="false" />
         <TextView
             android:layout_width="wrap_content"
             android:text="First Name"
@@ -155,6 +156,7 @@
             android:layout_width="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
+            android:digits="abcdefghijklmnopqrstuvwxyz.-_ "
             android:maxLength="25"/>
 
         <TextView
@@ -166,6 +168,21 @@
 
         <EditText
             android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content"
+            android:maxLength="10"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Confirm Password"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
             android:layout_marginBottom="10dp"
             android:inputType="textPassword"
@@ -191,7 +208,7 @@
         <TextView
             android:id="@+id/tvLoginLink"
             android:layout_width="wrap_content"
-            android:text="Already Member? Login Here"
+            android:text="Already a Member? Login Here"
             android:textStyle="italic"
             android:layout_height="wrap_content"
             android:textSize="15dp"

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button bUpdateProfile;
     Button bUnRegister;
-    EditText etFirstName, etLastName, etEmail, etAddress, etCity, etState, etZipCode, etUserName, etPassword;
+    EditText etFirstName, etLastName, etEmail, etAddress, etCity, etState, etZipCode, etUserName, etPassword, etConfirmPassword;
     UserLocalStore userLocalStore;
 
     @Override
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etZipCode = (EditText) findViewById(R.id.etZipCode);
         etUserName = (EditText) findViewById(R.id.etUserName);
         etPassword = (EditText) findViewById(R.id.etPassword);
+        etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
 
         bUpdateProfile = (Button) findViewById(R.id.bUpdateProfile);
         bUnRegister = (Button) findViewById(R.id.bUnRegister);
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etZipCode.setText(user.zipcode);
         etUserName.setText(user.username);
         etPassword.setText(user.password);
+        etConfirmPassword.setText(user.password);
 
     }
 
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 final String zipcode = etZipCode.getText().toString();
                 final String username = etUserName.getText().toString();
                 final String password = etPassword.getText().toString();
+                final String confirmpassword = etConfirmPassword.getText().toString();
 
                 if (firstname.isEmpty()){
                     showErrorMessage("'First Name' cannot be empty !!!");
@@ -155,6 +158,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (password.isEmpty()){
                     showErrorMessage("'Password' cannot be empty !!!");
+                    return;
+                }
+
+                if (confirmpassword.isEmpty()){
+                    showErrorMessage("'Confirm Password' cannot be empty !!!");
+                    return;
+                }
+
+                if (!(password).equals(confirmpassword)){
+                    showErrorMessage("Password mismatch!!!");
                     return;
                 }
 
