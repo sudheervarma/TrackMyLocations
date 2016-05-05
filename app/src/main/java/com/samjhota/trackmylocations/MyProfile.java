@@ -3,29 +3,23 @@ package com.samjhota.trackmylocations;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MyProfile extends AppCompatActivity implements View.OnClickListener {
 
     DatabaseHelper myDataBase;
+    UserLocalStore userLocalStore;
 
     Button bUpdateProfile;
     Button bUnRegister;
     EditText etFirstName, etLastName, etEmail, etAddress, etCity, etState, etZipCode, etUserName, etPassword, etConfirmPassword;
-    UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         myDataBase = new DatabaseHelper(this);
+        userLocalStore = new UserLocalStore(this);
 
         etFirstName = (EditText) findViewById(R.id.etFirstName);
         etLastName = (EditText) findViewById(R.id.etLastName);
@@ -51,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bUpdateProfile.setOnClickListener(this);
         bUnRegister.setOnClickListener(this);
 
-        userLocalStore = new UserLocalStore(this);
     }
 
     @Override
@@ -60,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           if (authenticate() == true){
             displayUserDetails();
         }else {
-            startActivity(new Intent(MainActivity.this, Login.class));
+            startActivity(new Intent(MyProfile.this, Login.class));
         }
 
     }
@@ -180,10 +174,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 boolean isUpdate = myDataBase.updateData(firstname, lastname, email, address, city, state, zipcode, username, password);
                                 if (isUpdate == true) {
-                                    Toast.makeText(MainActivity.this, "Data Updated Successfully", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(MainActivity.this, Landing.class));
+                                    Toast.makeText(MyProfile.this, "Data Updated Successfully", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(MyProfile.this, Landing.class));
                                 }else{
-                                    Toast.makeText(MainActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MyProfile.this, "Data not Updated", Toast.LENGTH_LONG).show();
                                 }
                             }
                         }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -207,12 +201,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 Integer deleteRows = myDataBase.deleteData(etUserName.getText().toString());
                                 if (deleteRows > 0){
-                                    Toast.makeText(MainActivity.this, "Successfully Unregistered", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MyProfile.this, "Successfully Unregistered", Toast.LENGTH_LONG).show();
                                     userLocalStore.clearUserData();
                                     userLocalStore.setUserLoggedIn(false);
-                                    startActivity(new Intent(MainActivity.this, Login.class));
+                                    startActivity(new Intent(MyProfile.this, Login.class));
                                 }else {
-                                    Toast.makeText(MainActivity.this, "Unregistration is not successful", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MyProfile.this, "Unregistration is not successful", Toast.LENGTH_LONG).show();
                                 }
                             }
                         }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -225,12 +219,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
 
-            case R.id.bLogOut:
-                userLocalStore.clearUserData();
-                userLocalStore.setUserLoggedIn(false);
-
-                startActivity(new Intent(this, Login.class));
-                break;
         }
     }
 

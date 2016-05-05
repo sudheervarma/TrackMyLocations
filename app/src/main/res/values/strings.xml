@@ -5,4 +5,5 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_step_counter">StepCounter</string>
+    <string name="title_activity_demo">Demo</string>
 </resources>

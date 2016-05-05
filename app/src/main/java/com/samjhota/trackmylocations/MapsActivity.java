@@ -37,7 +37,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private UiSettings uiSettings;
-    UserLocalStore userLocalStore;
+    private UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         User user = userLocalStore.getLoggedInUser();
         String address = user.address + " " + user.city + " " + user.state + " " + user.zipcode + " USA";
-        //String address = "110 CEDAR POINTE LOOP SAN RAMON CA 94583 USA";
         //String address = "111 CYPRESS BROOK CIR MELBOURNE FL 32901 USA";
-        //String address = "PLEASANTON CA 94588 USA";
 
         LatLng locationFromAddress = getLocationFromAddress(this, address);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(locationFromAddress));

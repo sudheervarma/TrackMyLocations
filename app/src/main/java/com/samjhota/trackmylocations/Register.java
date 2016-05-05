@@ -26,7 +26,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     TextView tvLoginLink;
     Button bRegister;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,6 +142,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                 // Checking if user is already registered
                 Cursor res1 = myDataBase.fetchData(username);
+
                 if (res1.getCount() ==0) {
                     boolean isInserted = myDataBase.insertData(firstname, lastname, email, address, city, state, zipcode, username, password);
                     if (isInserted == true) {
@@ -164,14 +164,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 startActivity(new Intent(this, Login.class));
                 break;
         }
-    }
-
-    public void showMessage(String title, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
     }
 
     private void showErrorMessage(String message) {

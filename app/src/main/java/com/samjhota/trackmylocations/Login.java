@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         myDataBase = new DatabaseHelper(this);
+        userLocalStore = new UserLocalStore(this);
 
         etUserName = (EditText) findViewById(R.id.etUserName);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -44,8 +45,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         bLogin.setOnClickListener(this);
         tvRegisterLink.setOnClickListener(this);
-
-        userLocalStore = new UserLocalStore(this);
 
     }
 
@@ -111,14 +110,5 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         dialogBuilder.setPositiveButton("OK", null);
         dialogBuilder.show();
     }
-
-//
-//    private void logUserIn(User retunedUser){
-//        userLocalStore.storeUserData(retunedUser);
-//        userLocalStore.setUserLoggedIn(true);
-//
-//        startActivity(new Intent(this, MainActivity.class));
-//
-//    }
 
 }
